@@ -1,7 +1,6 @@
 package com.example.Bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,17 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Bookstore.model.Book;
 import com.example.Bookstore.model.BookRepository;
-import com.example.Bookstore.model.CategoryRepository;
+import com.example.Bookstore.model.CatregoryRepository;
 
 import org.springframework.ui.Model;
 @Controller
 public class BookController {
 	@Autowired
 	private BookRepository repository;
-	
 	@Autowired
-	private CategoryRepository crepository;
-
+	private CatregoryRepository crepository;
 	
 	@GetMapping("/BookList")
 	public String BookList(Model model) {		
@@ -36,8 +33,7 @@ public class BookController {
 	public String addBook(Model model) {
 		
 		model.addAttribute("book", new Book());	
-		model.addAttribute("categories", crepository.findAll());
-
+		model.addAttribute("departments", crepository.findAll());
 		return "addBook";
 		
 	}
@@ -55,8 +51,7 @@ public class BookController {
 	 @GetMapping("/edit/{id}")
 		public String edit(@PathVariable("id")Long bookId, Model model) {
 		 model.addAttribute("book", repository.findById(bookId));
-		 model.addAttribute("categories", crepository.findAll());
-
+		 model.addAttribute("departments", crepository.findAll());
 		return "editBook";
 		}
 

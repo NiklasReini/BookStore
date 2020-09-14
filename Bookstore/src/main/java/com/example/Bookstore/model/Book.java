@@ -1,12 +1,9 @@
 package com.example.Bookstore.model;
 
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 @Entity
 public class Book {
 	@Id
@@ -18,21 +15,14 @@ public class Book {
 	private String author;
 	private int price;
 	
-	
-	 @ManyToOne
-	    @JoinColumn(name = "categoryId")
-	    private Category category;
-	
-	
 	public Book() {}
 	
-	public Book(String author, String title, String isbn, int year, Category category) {
+	public Book(String author, String title, String isbn, int year) {
 		super();
 		this.author = author;
 		this.title = title;
 		this.isbn = isbn;
 		this.year = year;
-		this.category = category;
 		
 	}
 	
@@ -73,19 +63,6 @@ public class Book {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
-	public Category getCategory() {
-		return category;
-	}
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", isbn=" + isbn + ", year=" + year + ", title=" + title + ", author=" + author
-				+ ", price=" + price + ", category=" + category + "]";
 	}
 	
 	

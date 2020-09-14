@@ -1,0 +1,24 @@
+<!DOCTYPEhtml>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>BookList</title>
+<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>		
+	<h1>Books</h1>	
+	<table class="table table-striped">
+		<tbody>
+			<tr th:each = "book : ${books}">
+				<td th:text = "${book.title}"></td>
+				<td th:text = "${book.year}"></td>
+				<td th:text = "${book.author}"></td>
+				<td><a class="btn btn-danger"  th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+				<td><a class="btn btn-danger" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a  class="btn btn-success" th:href="@{/add}">add book</a>
+</body>
+</html>
