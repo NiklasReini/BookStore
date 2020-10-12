@@ -16,10 +16,14 @@
 				<td th:text = "${book.author}"></td>
 				<td th:text = "${book.category.name}"></td>
 				<td><a class="btn btn-danger"  th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-				<td><a class="btn btn-danger" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+				<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
 			</tr>
 		</tbody>
 	</table>
 	<a  class="btn btn-success" th:href="@{/add}">add book</a>
+	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+	<form th:action="@{/logout}"method="post">
+		<input type="submit"value="Sign Out"/>
+	</form>
 </body>
 </html>
